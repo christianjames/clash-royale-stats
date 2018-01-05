@@ -14,7 +14,7 @@ if (!document.querySelector('.clan__clanName .datetime')) {
   document.querySelector('.clan__clanName').appendChild(newElement)
 }
 
-document.querySelector('.clan__clanName .datetime').innerHTML = new Date().toLocaleString()
+document.querySelector('.clan__clanName').innerHTML = new Date().toLocaleString()
 
 document.querySelectorAll('.clan__table .clan__rowContainer').forEach(function (el) {
   el.style.height = '30px'
@@ -25,6 +25,10 @@ document.querySelectorAll('.clan__table .clan__rowContainer').forEach(function (
   var elementCrowns = el.querySelector('.clan__crown')
   var parentElementCrowns = elementCrowns.parentElement
 
+  var elementRole = el.querySelector('.clan__memberRoleInner')
+  var parentElementRole = elementRole.parentElement
+  
+  var role = elementRole.innerText
   var trophies = elementDonation.innerText
   var crowns = elementCrowns.innerText
 
@@ -51,6 +55,8 @@ document.querySelectorAll('.clan__table .clan__rowContainer').forEach(function (
     colorCrowns = '255,0,0'
   }
   parentElementCrowns.style.background = 'rgba(' + colorCrowns + ', 1)'
+  
+  elementRole.innerText = role.replace('Elder', 'Ancião').replace('Leader', 'Líder').replace('Co-leader', 'Colíder').replace('Member', 'Membro')
 
 })
 ```
