@@ -1,11 +1,25 @@
-document.querySelector('.clan__refresh').innerHTML = ''
+document.querySelector('.header').remove()
+document.querySelector('.clan__refresh').remove()
+document.querySelector('.clan__filters').remove()
+document.querySelector('.footer').remove()
+
 if (!document.querySelector('.clan__clanName .datetime')) {
   var newElement = document.createElement('span')
   newElement.className = 'datetime'
   document.querySelector('.clan__clanName').appendChild(newElement)
 }
 
-document.querySelector('.clan__clanName').innerHTML = new Date().toLocaleString()
+var newColumn = document.createElement('div')
+newColumn.className = 'legenda'
+document.querySelector('.clan__donationsMetric').parentElement.appendChild(newColumn)
+
+
+var colunaLegenda = '<p style="font-weight: bold; margin: 0 0 5px 0;">Legenda</p>';
+colunaLegenda += '<p style="font-weight: bold; background: green; padding: 5px; margin: 0;">Verde - Acima da meta </p>'
+colunaLegenda += '<p style="font-weight: bold; background: yellow;  padding: 5px; margin: 0;">Amarelo - Na meta </p>'
+colunaLegenda += '<p style="font-weight: bold; background: red;  padding: 5px; margin: 0;">Vermelho - Abaixo da meta</p>'
+document.querySelector('.legenda').innerHTML = colunaLegenda;
+document.querySelector('.clan__clanName .datetime').innerHTML = new Date().toLocaleString()
 
 document.querySelectorAll('.clan__table .clan__rowContainer').forEach(function (el) {
   el.style.height = '30px'
@@ -18,7 +32,7 @@ document.querySelectorAll('.clan__table .clan__rowContainer').forEach(function (
 
   var elementRole = el.querySelector('.clan__memberRoleInner')
   var parentElementRole = elementRole.parentElement
-  
+
   var role = elementRole.innerText
   var trophies = elementDonation.innerText
   var crowns = elementCrowns.innerText
@@ -46,7 +60,7 @@ document.querySelectorAll('.clan__table .clan__rowContainer').forEach(function (
     colorCrowns = '255,0,0'
   }
   parentElementCrowns.style.background = 'rgba(' + colorCrowns + ', 1)'
-  
+
   elementRole.innerText = role.replace('Elder', 'Ancião').replace('Leader', 'Líder').replace('Co-leader', 'Colíder').replace('Member', 'Membro')
 
 })
